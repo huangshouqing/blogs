@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <div class="outer">
-      <section id="main">
+      <section id="main"
+        v-loading.fullscreen.lock="fullscreenLoading">
         <div v-if='!nodata'
           class='showData'>
           <article class="article"
@@ -24,11 +25,6 @@
           </article>
         </div>
         <div v-else>
-          <!-- <img src="../assets/nodata.png"
-            alt=""
-            width="100px"
-            v-if='fullscreenLoading===false'
-            class='nodata'> -->
           <i class='el-icon-tickets nodata'></i>
         </div>
       </section>
@@ -64,8 +60,10 @@ export default {
       });
     },
     getlist() {
+      this.fullscreenLoading = true;
       this.$axios.get("api/blog/list").then((res) => {
         if (res.data.code == 0) {
+          this.fullscreenLoading = false;
           this.list = res.data.data;
         }
       });

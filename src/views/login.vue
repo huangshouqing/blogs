@@ -35,6 +35,7 @@
             <el-col :span='22'>
               <el-input class="inps"
                 placeholder='密码'
+                show-password
                 v-model="loginForm.password"></el-input>
             </el-col>
           </el-row>
@@ -212,7 +213,7 @@ export default {
             if (res.code === 0) {
               this.$router.push("/");
             } else {
-              this.$message({
+              this.$hMessage({
                 type: "error",
                 message: "账号或密码错误",
               });
@@ -240,7 +241,7 @@ export default {
   font-size: 16px;
   background-repeat: no-repeat;
   background-position: left top;
-  background-color: #242645;
+  background-color: rgb(51, 51, 51);
   color: #fff;
   font-family: "Source Sans Pro";
   background-size: 100%;
@@ -260,7 +261,7 @@ export default {
     bottom: 0;
     margin: auto;
     padding: 50px 40px 40px 40px;
-    box-shadow: -15px 15px 15px rgba(6, 17, 47, 0.7);
+    box-shadow: -15px 15px 15px rgba(20, 20, 20, 0.7);
     opacity: 1;
     background: linear-gradient(
       230deg,
@@ -272,10 +273,12 @@ export default {
       color: #fff;
       background-color: transparent;
       font-size: 12px;
+    
     }
     .submitBtn {
+      border: 1px solid #fff;
       background-color: transparent;
-      color: #39f;
+      // color: #39f;
       width: 200px;
     }
     .iconfont {

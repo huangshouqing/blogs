@@ -62,15 +62,15 @@ export default {
           res = res.data;
           if (res.code === 0) {
             // 添加成功
-            this.$message({
-              type: "success",
+            this.$hMessage({
+              type: "info",
               message: "博客编辑成功",
             });
             this.$router.push("admin");
           } else {
             // 添加失败
-            this.$message({
-              type: "error",
+            this.$hMessage({
+              type: "info",
               message: "博客编辑失败，请重试",
             });
           }

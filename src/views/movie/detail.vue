@@ -122,7 +122,7 @@ export default {
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  background: rgb(155, 155, 155);
+  // background: rgb(155, 155, 155);
   .icon {
     position: absolute;
     right: 10px;
@@ -193,12 +193,13 @@ export default {
     text-align: center;
     font-weight: bold;
     &:hover {
+      background: rgb(88, 88, 88);
       border: 1px solid #fff;
       color: #fff;
     }
   }
   .isChose {
-    background: rgb(88, 88, 88);
+    background: #000;
     color: #fff;
     border: 1px solid #fff;
   }

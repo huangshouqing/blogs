@@ -21,7 +21,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  background-color: #eee;
+  background-color: #fff;
 }
 a {
   text-decoration: none;
@@ -32,5 +32,17 @@ a {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-image: url("./assets/huang.png");
+  background-size: 70%;
+  background-position: 60%;
+  background-repeat: no-repeat;
+}
+.el-loading-mask {
+  background-color: rgba(255, 255, 255, 1) !important;
+  .circular {
+    .path {
+      stroke: #000;
+    }
+  }
 }
 </style>

@@ -1,11 +1,15 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import hansan from 'hansan-vui'
+import 'hansan-vui/lib/hansan-vui.css'
 import http from './http'
 import elementui from 'element-ui';
 import '@/assets/reset.css'
 import eventBus from './event.js'
 
+
+Vue.use(hansan)
 Vue.use(elementui)
 Vue.prototype.$axios = http
 Vue.prototype.$bus = eventBus

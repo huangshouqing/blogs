@@ -87,22 +87,22 @@ export default {
               res = res.data;
               if (res.code === 0) {
                 // 添加成功
-                this.$message({
-                  type: "success",
+                this.$hMessage({
+                  type: "info",
                   message: "博客删除成功",
                 });
                 this.getList();
               } else {
                 // 添加失败
-                this.$message({
-                  type: "error",
+                this.$hMessage({
+                  type: "info",
                   message: "博客删除失败，请重试",
                 });
               }
             });
         })
         .catch(() => {
-          this.$message({
+          this.$hMessage({
             type: "info",
             message: "已取消删除",
           });

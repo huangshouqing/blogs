@@ -1,5 +1,7 @@
+import Vue from 'vue'
 import http from 'axios';
 import router from '../router/index'
+
 
 // 响应拦截器
 http.interceptors.response.use(
@@ -22,6 +24,7 @@ http.interceptors.response.use(
         // 401: 未登录
         // 未登录则跳转登录页面，并携带当前页面的路径
         // 在登录成功后返回当前页面，这一步需要在登录页操作。
+
         case 401:
           router.push('/login')
           break;
@@ -35,7 +38,13 @@ http.interceptors.response.use(
 
         // 404请求不存在
         case 404:
-          
+          break;
+        case 500:
+          Vue.$hMessage({
+            type: "error",
+            message: '服务器错误'
+          })
+
           break;
         // 其他错误，直接抛出错误提示
         default:

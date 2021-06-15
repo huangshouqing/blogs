@@ -17,7 +17,7 @@
       </nav>
       <nav class="search-nav"
         v-if='searchIsShow'>
-        <el-input size='mini'
+        <el-input size='medium'
           :placeholder="searchPlayholder"
           @change="search(searchValue)"
           prefix-icon="el-icon-search"
@@ -27,7 +27,7 @@
           @click='search'></i>
       </nav>
       <nav class='setting-nav'>
-        <a @click='logout'>退出登录</a>
+        <a @click='logout' style='cursor:pointer'>退出登录</a>
         <router-link tag="a"
           to="/admin"
           href="">管理中心</router-link>
@@ -91,7 +91,7 @@ export default {
           });
         })
         .catch(() => {
-          this.$message({
+          this.$hMessage({
             type: "info",
             message: "已取消退出",
           });
@@ -100,8 +100,8 @@ export default {
     // 查询
     search() {
       if (this.searchValue.length === 0) {
-        this.$message({
-          type: "error",
+        this.$hMessage({
+          type: "info",
           message: "搜索内容不能为空",
         });
         return;
@@ -133,8 +133,7 @@ export default {
   position: relative;
   height: 80px;
   padding: 0 20px;
-  color: #a5a5a5;
-  background: rgb(0, 0, 0);
+  color: #000;
   z-index: 9999;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
   nav {
@@ -147,7 +146,7 @@ export default {
     a {
       float: left;
       display: block;
-      color: #fff;
+      color: #000;
       opacity: 0.6;
       line-height: 50px;
       text-decoration: none;
@@ -162,7 +161,7 @@ export default {
       float: left;
       display: block;
       font-weight: bold;
-      color: #fff;
+      color: #000;
       opacity: 0.6;
       line-height: 80px;
       text-decoration: none;
@@ -179,16 +178,26 @@ export default {
     }
   }
   .search-nav {
-    float: left;
+    position: absolute;
+    right: 220px;
     line-height: 80px;
     margin-left: 30px;
     display: flex;
     align-items: center;
+    z-index: 1;
     .el-icon-search {
       font-size: 20px;
       margin-left: 10px;
       cursor: pointer;
       font-weight: bold;
+    }
+    & /deep/ .el-input {
+      .el-input__inner {
+        border-width: 2px;
+        &:focus {
+          border: 2px solid #000;
+        }
+      }
     }
   }
   .setting-nav {
@@ -198,7 +207,7 @@ export default {
       float: left;
       display: block;
       font-weight: bold;
-      color: #fff;
+      color: #000;
       opacity: 0.6;
       line-height: 80px;
       text-decoration: none;
