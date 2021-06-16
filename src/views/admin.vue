@@ -61,13 +61,13 @@ export default {
       this.$router.push("new");
     },
     getList() {
-      this.$axios(`api/blog/list`).then((res) => {
+      this.$axios(`api/blog/authorList`).then((res) => {
         console.log(res.data);
         this.blog = res.data.data;
       });
     },
-    search(keyword) {
-      this.$axios(`api/blog/list?keyword=${keyword}`).then((res) => {
+    search(keywords) {
+      this.$axios(`api/blog/authorList?keywords=${keywords}`).then((res) => {
         console.log(res.data);
         this.blog = res.data.data;
       });
