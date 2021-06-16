@@ -245,8 +245,8 @@ export default {
   mounted() {
     this.canvas = document.getElementById("myCanvas");
     this.context = this.canvas.getContext("2d");
-    this.createStar(true);
-    this.drawFrame();
+    // this.createStar(true);
+    // this.drawFrame();
   },
 };
 </script>
@@ -258,8 +258,9 @@ export default {
   margin: 0;
   height: 100vh;
   font-size: 16px;
+  background-image: url("../assets/bg/bg.png");
   background-repeat: no-repeat;
-  background-position: left top;
+  background-position: 0%;
   background-color: rgb(51, 51, 51);
   color: #fff;
   font-family: "Source Sans Pro";

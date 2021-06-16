@@ -7,7 +7,7 @@
       </canvas>
     </div>
     <div id="loginBox">
-      <h4>登录</h4>
+      <h4>江湖</h4>
       <el-form :model="loginForm"
         :rules="loginRules"
         ref="loginForm"
@@ -21,7 +21,7 @@
             </el-col>
             <el-col :span='22'>
               <el-input class="inps"
-                placeholder='用户名'
+                placeholder='输入用户名'
                 v-model="loginForm.username"></el-input>
             </el-col>
           </el-row>
@@ -34,7 +34,7 @@
             </el-col>
             <el-col :span='22'>
               <el-input class="inps"
-                placeholder='密码'
+                placeholder='输入密码'
                 show-password
                 v-model="loginForm.password"></el-input>
             </el-col>
@@ -226,8 +226,8 @@ export default {
   mounted() {
     this.canvas = document.getElementById("myCanvas");
     this.context = this.canvas.getContext("2d");
-    this.createStar(true);
-    this.drawFrame();
+    // this.createStar(true);
+    // this.drawFrame();
   },
 };
 </script>
@@ -239,8 +239,9 @@ export default {
   margin: 0;
   height: 100vh;
   font-size: 16px;
+  background-image: url("../assets/bg/bg.png");
   background-repeat: no-repeat;
-  background-position: left top;
+  background-position: 0%;
   background-color: rgb(51, 51, 51);
   color: #fff;
   font-family: "Source Sans Pro";
@@ -273,7 +274,6 @@ export default {
       color: #fff;
       background-color: transparent;
       font-size: 12px;
-    
     }
     .submitBtn {
       border: 1px solid #fff;

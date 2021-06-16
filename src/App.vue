@@ -5,7 +5,6 @@
     <router-view />
   </div>
 </template>
-
 <script>
 import HeaderInner from "@/components/HeaderInner.vue";
 export default {
