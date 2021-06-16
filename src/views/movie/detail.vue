@@ -1,15 +1,15 @@
 <!--  -->
 <template>
-  <div class='movie-detail'>
+  <div class='movie-detail'
+    v-loading.fullscreen.lock="fullscreenLoading">
     <!-- <i class='icon el-icon-s-unfold'
       v-if='fold===false'
       @click='fold=true'></i>
     <i class='icon el-icon-s-fold'
       v-else
       @click='fold=false'></i> -->
-    <i class='el-icon-full-screen'
-      @click="screen"
-      v-loading.fullscreen.lock="fullscreenLoading"></i>
+    <!-- <i class='el-icon-full-screen'
+      @click="screen"></i> -->
     <ul class='menu'
       v-if='fold===false'>
       <li v-for="(item,index) in list"

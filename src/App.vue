@@ -32,7 +32,7 @@ a {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-image: url("./assets/bg.png");
+  background-image: url("./assets/bg/bg.png");
   background-size: 100%;
   background-position: 0%;
   background-repeat: no-repeat;

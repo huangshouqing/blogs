@@ -1,50 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import home from '../views/home.vue'
+import home from '../views/blog/home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: home
-  },
-  {
-    path: '/home',
-    redirect: '/'
-  },
-  {
-    path: '/bookSearch',
-    name: 'bookSearch',
-    component: () => import('../views/bookSearch.vue')
-  },
-  {
-    path: '/book',
-    name: 'book',
-    component: () => import('../views/book.vue')
-  },
-  {
-    path: '/bookMenu',
-    name: 'bookMenu',
-    component: () => import('../views/bookMenu.vue')
-  },
-  {
-    path: '/bookContent',
-    name: 'bookContent',
-    component: () => import('../views/bookContent.vue')
-  },
-  {
-    path: '/movieSearch',
-    name: 'movieSearch',
-    component: () => import('../views/movie/search.vue')
-  },
-  {
-    path: '/movieDetail',
-    name: 'movieDetail',
-    component: () => import('../views/movie/detail.vue')
-  },
-
   {
     path: '/login',
     name: 'login',
@@ -56,25 +16,64 @@ const routes = [
     component: () => import('../views/admin.vue')
   },
   {
+    path: '/register',
+    name: 'register',
+    component: () => import('../views/register.vue')
+  },
+  {
+    path: '/',
+    name: 'home',
+    component: home
+  },
+  {
+    path: '/home',
+    redirect: '/'
+  },
+  {
     path: '/detail',
     name: 'detail',
-    component: () => import('../views/detail.vue')
+    component: () => import('../views/blog/detail.vue')
   },
   {
     path: '/edit',
     name: 'edit',
-    component: () => import('../views/edit.vue')
+    component: () => import('../views/blog/edit.vue')
   },
   {
     path: '/new',
     name: 'new',
-    component: () => import('../views/new.vue')
+    component: () => import('../views/blog/new.vue')
   },
   {
-    path: '/register',
-    name: 'register',
-    component: () => import('../views/register.vue')
-  }
+    path: '/bookSearch',
+    name: 'bookSearch',
+    component: () => import('../views/book/bookSearch.vue')
+  },
+  {
+    path: '/book',
+    name: 'book',
+    component: () => import('../views/book/book.vue')
+  },
+  {
+    path: '/bookMenu',
+    name: 'bookMenu',
+    component: () => import('../views/book/bookMenu.vue')
+  },
+  {
+    path: '/bookContent',
+    name: 'bookContent',
+    component: () => import('../views/book/bookContent.vue')
+  },
+  {
+    path: '/movieSearch',
+    name: 'movieSearch',
+    component: () => import('../views/movie/search.vue')
+  },
+  {
+    path: '/movieDetail',
+    name: 'movieDetail',
+    component: () => import('../views/movie/detail.vue')
+  },
 ]
 
 const router = new VueRouter({

@@ -1,9 +1,9 @@
 <!--  -->
 <template>
-  <div class='main'>
+  <div class='main'
+    v-loading.fullscreen.lock="fullscreenLoading">
     <div class='header'>
       <h1>{{ message }}</h1>
-
     </div>
     <div class='search'>
       <el-input v-model="keyword"
@@ -52,6 +52,7 @@ export default {
       password: "",
       blog: [],
       keyword: "",
+      fullscreenLoading: false,
     };
   },
   created() {
@@ -62,15 +63,21 @@ export default {
       this.$router.push("new");
     },
     getList() {
+      this.fullscreenLoading = true;
       this.$axios(`api/blog/authorList`).then((res) => {
-        console.log(res.data);
-        this.blog = res.data.data;
+        this.fullscreenLoading = false;
+        if (res.data.code == 0) {
+          this.blog = res.data.data;
+        }
       });
     },
     search(keywords) {
+      this.fullscreenLoading = true;
       this.$axios(`api/blog/authorList?keywords=${keywords}`).then((res) => {
-        console.log(res.data);
-        this.blog = res.data.data;
+        this.fullscreenLoading = false;
+        if (res.data.code == 0) {
+          this.blog = res.data.data;
+        }
       });
     },
     del(id) {

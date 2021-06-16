@@ -43,7 +43,6 @@ export default {
         this.fullscreenLoading = false;
         if (res.data.code == 0) {
           this.list = res.data.data;
-          // this.randomColor();
         }
       });
     },
