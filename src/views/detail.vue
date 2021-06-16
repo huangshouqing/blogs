@@ -7,7 +7,7 @@
             <h2 class='title'>{{ detail.title }}</h2>
             <div class="content">{{ detail.content }}</div>
             <div class="article-meta">
-              更新时间：{{ detail.createtime }} | 作者：{{ detail.author }}
+              更新时间：{{ time(detail.createtime) }} | 作者：{{ detail.author }}
             </div>
           </div>
         </article>
@@ -40,6 +40,21 @@ export default {
           this.detail = res.data;
         }
       });
+    },
+    time(num) {
+      let d = new Date(num);
+      function addZero(num) {
+        if (num < 10) return "0" + num;
+        return num;
+      }
+      // 按自定义拼接格式返回
+      return (
+        d.getFullYear() +
+        "/" +
+        addZero(d.getMonth() + 1) +
+        "/" +
+        addZero(d.getDate())
+      );
     },
   },
 
@@ -80,6 +95,7 @@ export default {
           .title {
             font-size: 30px;
             text-align: center;
+            padding: 20px;
           }
           .article-meta {
             position: absolute;

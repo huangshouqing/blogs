@@ -32,9 +32,9 @@ a {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-image: url("./assets/huang.png");
-  background-size: 70%;
-  background-position: 60%;
+  background-image: url("./assets/bg.png");
+  background-size: 100%;
+  background-position: 0%;
   background-repeat: no-repeat;
 }
 .el-loading-mask {

@@ -7,17 +7,17 @@
           class='showData'>
           <article class="article"
             v-for="item in list"
-            :key="item.id">
-            <div class="article-inner">
-              <a @click="
-                  todetail({
+            :key="item.id"
+            @click="todetail({
                     title: item.title,
                     time: time(item.createtime),
                     con: item.content,
                     au: item.author,
                     id: item.id
-                  })
-                ">{{ item.title }}</a>
+                  })">
+            <div class="article-inner">
+              <a>{{ item.title }}</a>
+              <div>{{item.author}}</div>
               <div class="article-meta">
                 分类：技术 | {{ time(item.createtime) }}
               </div>
@@ -92,6 +92,7 @@ export default {
   height: calc(100% - 80px);
   .outer {
     height: 100%;
+    width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
     overflow: hidden;
@@ -134,31 +135,33 @@ export default {
           margin-right: 20px;
           margin-bottom: 20px;
           cursor: pointer;
-          &:hover {
-            transform: scale(1.1);
-          }
+
           a {
             font-size: 20px;
             font-weight: bold;
           }
           .article-inner {
+            height: 100px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            justify-content: space-between;
             padding: 15px;
             box-sizing: border-box;
             overflow: hidden;
             background: #fff;
-            box-shadow: 1px 2px 3px #ddd;
-            border: 1px solid #ddd;
+            // box-shadow: 1px 2px 3px #ddd;
+            border: 2px solid #000;
             border-radius: 6px;
-            h2 {
+            a {
               font-size: 18px;
-              margin-bottom: 20px;
+              &:hover {
+                transform: scale(1.1);
+              }
             }
             .article-meta {
               font-size: 14px;
-              color: #b5b5b5;
+              // color: #b5b5b5;
               font-weight: 500;
               text-align: right;
             }

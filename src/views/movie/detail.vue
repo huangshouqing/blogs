@@ -8,7 +8,8 @@
       v-else
       @click='fold=false'></i> -->
     <i class='el-icon-full-screen'
-      @click="screen"></i>
+      @click="screen"
+      v-loading.fullscreen.lock="fullscreenLoading"></i>
     <ul class='menu'
       v-if='fold===false'>
       <li v-for="(item,index) in list"
@@ -35,6 +36,7 @@
 export default {
   data() {
     return {
+      fullscreenLoading: false,
       fullscreen: false,
       fold: false, //是否是合起来
       list: [],
@@ -71,9 +73,11 @@ export default {
   },
   methods: {
     getPlayList() {
+      this.fullscreenLoading = true;
       this.$axios
         .get(`api/movie/detail?movieSrc=${this.movieSrc}&type=${this.type}`)
         .then((res) => {
+          this.fullscreenLoading = false;
           if (res.data.code === 0) {
             res = res.data;
             // this.list = res.data.slice(0, res.data.length - 1);

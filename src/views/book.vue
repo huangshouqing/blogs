@@ -5,14 +5,15 @@
       <section id="main">
         <article class="book"
           v-for="item in list"
-          :key="item.id">
-          <div class="book-inner"
-            ref="book">
-            <a @click="
+          :key="item.id"
+          @click="
                   todetail({
                     link: item.link,
                   })
-                ">{{ item.title }}</a>
+                ">
+          <div class="book-inner"
+            ref="book">
+            <a>{{ item.title }}</a>
             <div class="book-meta">
               {{ item.author }}
             </div>
@@ -120,19 +121,6 @@ export default {
         margin-right: 20px;
         margin-bottom: 20px;
         cursor: pointer;
-        &:hover {
-          transform: scale(1.2);
-        }
-        a {
-          cursor: pointer;
-          color: #000;
-          font-size: 20px;
-          font-weight: bold;
-          margin-bottom: 10px;
-        }
-        a:hover {
-          text-decoration: underline;
-        }
         .book-inner {
           display: flex;
           flex-direction: column;
@@ -140,13 +128,22 @@ export default {
           padding: 15px;
           box-sizing: border-box;
           overflow: hidden;
-          box-shadow: 1px 2px 3px #ddd;
-          border: 1px solid #ddd;
+          // box-shadow: 1px 2px 3px #ddd;
+          border: 2px solid #000;
           border-radius: 6px;
           background: #fff;
-          h2 {
+          a {
+            cursor: pointer;
+            color: #000;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
             font-size: 18px;
             margin-bottom: 20px;
+            &:hover {
+              transform: scale(1.1);
+              text-decoration: underline;
+            }
           }
           .book-meta {
             font-size: 14px;
