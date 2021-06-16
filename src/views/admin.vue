@@ -3,10 +3,11 @@
   <div class='main'>
     <div class='header'>
       <h1>{{ message }}</h1>
-  
+
     </div>
     <div class='search'>
       <el-input v-model="keyword"
+        clearable
         size='medium'
         placeholder="请输入内容"
         prefix-icon="el-icon-search"
@@ -128,7 +129,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang='less'>
 .main {
   height: calc(100% - 80px);
   width: 100%;
@@ -143,7 +144,7 @@ export default {
   height: 60px;
   line-height: 60px;
 }
-.header h1{
+.header h1 {
   font-size: 30px;
 }
 .header .add {
@@ -156,7 +157,7 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.search >>> .el-input {
+.search /deep/ .el-input {
   width: 200px;
 }
 ul {
@@ -169,9 +170,33 @@ ul li {
 }
 
 .content {
+  height: calc(100% - 116px);
+  overflow: auto;
   width: 100%;
   margin: 0 auto;
-  border: 1px solid #ccc;
+  // border: 1px solid #ccc;
+  scrollbar-color: #000 transparent; /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
+  scrollbar-width: thin; /* 火狐滚动条无法自定义宽度，只能通过此属性使滚动条宽度变细 */
+  -ms-overflow-style: none; /* 隐藏滚动条（在IE和Edge两个浏览器中很难更改样式，固采取隐藏方式） */
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    /**/
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #000;
+  }
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 }
 
 .list-header {

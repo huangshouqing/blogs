@@ -4,10 +4,11 @@
       <section id="main">
         <article class="article">
           <div class="article-inner">
-            <h2 class='title'>{{ detail.title }}</h2>
-            <div class="content">{{ detail.content }}</div>
+            <h2 class='article-title'>{{ detail.title }}</h2>
+            <div class="article-content">{{ detail.content }}</div>
             <div class="article-meta">
-              更新时间：{{ time(detail.createtime) }} | 作者：{{ detail.author }}
+              <p>更新时间：{{ time(detail.createtime) }}</p>
+              <p>作者：{{ detail.author }}</p>
             </div>
           </div>
         </article>
@@ -80,68 +81,58 @@ export default {
       .article {
         height: 100%;
         overflow: auto;
+        position: relative;
 
         .article-inner {
           height: 100%;
-          overflow: hidden;
+          overflow: auto;
           padding: 10px;
           box-sizing: border-box;
-          background: #fff;
+          // background: #fff;
+          background: transparent;
           box-shadow: 1px 2px 3px #ddd;
-          border: 1px solid #ddd;
+          // border: 1px solid #ddd;
           border-radius: 3px;
           padding-bottom: 15px;
-          position: relative;
-          .title {
+
+          .article-title {
             font-size: 30px;
             text-align: center;
             padding: 20px;
           }
+          .article-content {
+            text-align: left;
+            line-height: 30px;
+          }
           .article-meta {
-            position: absolute;
-            bottom: 0px;
             font-size: 14px;
             color: #b5b5b5;
             padding: 0 0 7px 0;
             font-weight: 500;
             text-align: right;
           }
-          .content {
-            text-align: left;
+
+          scrollbar-color: #000 transparent; /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
+          scrollbar-width: thin; /* 火狐滚动条无法自定义宽度，只能通过此属性使滚动条宽度变细 */
+          -ms-overflow-style: none; /* 隐藏滚动条（在IE和Edge两个浏览器中很难更改样式，固采取隐藏方式） */
+          &::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+            /**/
           }
-        }
-      }
-    }
-    #sidebar {
-      display: inline;
-      float: left;
-      width: 23.333333333333332%;
-      margin: 0 0.833333333333333%;
-      .widget-wrap {
-        margin: 50px 0;
-        h3 {
-          text-align: left;
-          color: #999;
-        }
-      }
-      .widget {
-        color: #777;
-        text-shadow: 0 1px #fff;
-        background: #ddd;
-        -webkit-box-shadow: 0 -1px 4px #ccc inset;
-        box-shadow: 0 -1px 4px #ccc inset;
-        border: 1px solid #ccc;
-        padding: 15px;
-        border-radius: 3px;
-        li {
-          list-style: none;
-          text-align: left;
-          margin: 5px;
-          a {
-            color: #258fb8;
+          &::-webkit-scrollbar-track {
+            background: transparent;
+            border-radius: 2px;
           }
-          a:hover {
-            text-decoration: underline;
+          &::-webkit-scrollbar-thumb {
+            background: #000;
+            border-radius: 5px;
+          }
+          &::-webkit-scrollbar-thumb:hover {
+            background: #000;
+          }
+          &::-webkit-scrollbar-corner {
+            background: transparent;
           }
         }
       }

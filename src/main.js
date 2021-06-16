@@ -8,6 +8,7 @@ import '@/assets/reset.css'
 import eventBus from './event.js'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
+import './assets/element-reset.less'
 
 Vue.use(Element)
 Vue.use(hansan)

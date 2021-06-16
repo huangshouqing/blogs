@@ -8,6 +8,7 @@
       <div class='title'>
         <span>标题：</span>
         <el-input v-model="title"
+          clearable
           type="text"
           width='100' />
       </div>
@@ -17,7 +18,7 @@
           v-model="content"
           id=""
           cols="30"
-          rows="10" />
+          rows="20" />
       </div>
       <div class='add'>
         <el-button @click="edit"

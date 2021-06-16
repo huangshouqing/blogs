@@ -117,6 +117,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@fontColor: #2c3e50;
 .home {
   height: calc(100% - 80px);
   .outer {
@@ -162,7 +163,7 @@ export default {
         margin-bottom: 10px;
         cursor: pointer;
         font-weight: bold;
-        color: #000;
+        color: @fontColor;
         &:hover {
           transform: scale(1.05);
         }
@@ -198,9 +199,9 @@ export default {
           overflow: hidden;
           padding: 10px 40px;
           box-sizing: border-box;
-          background: #fff;
+          background: transparent;
           box-shadow: 1px 2px 3px #ddd;
-          border: 1px solid #ddd;
+          // border: 1px solid #ddd;
           border-radius: 3px;
           padding-bottom: 15px;
           position: relative;
@@ -211,6 +212,8 @@ export default {
           }
           .content {
             text-align: left;
+            line-height: 30px;
+            // color: @fontColor;
           }
         }
         scrollbar-color: #000 transparent; /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
@@ -248,16 +251,6 @@ export default {
         & /deep/ .el-button {
           margin-left: 0px;
           margin-bottom: 20px;
-          border-width: 2px;
-          font-weight: bold;
-          &:hover {
-            border: 2px solid #000;
-            color: #000;
-          }
-          &:focus {
-            border: 2px solid #000;
-            color: #000;
-          }
         }
       }
     }
