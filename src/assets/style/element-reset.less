@@ -96,6 +96,10 @@
       }
     }
   }
+
+  .el-tabs__nav-wrap::after {
+    background-color: transparent;
+  }
 }
 
 .el-select {
@@ -130,4 +134,17 @@
 
 .w-e-text-container {
   z-index: 1 !important;
+}
+
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: rgba(92, 107, 119, 0.8)
+}
+
+.el-pager {
+  .number {
+    &:hover {
+      color: #000 !important
+    }
+  }
 }

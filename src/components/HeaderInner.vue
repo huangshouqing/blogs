@@ -17,9 +17,9 @@
         <router-link tag="a"
           to="/tv"
           href="">电视家</router-link>
-        <router-link tag="a"
+        <!-- <router-link tag="a"
           to="/music"
-          href="">music</router-link>
+          href="">music</router-link> -->
       </nav>
       <nav class="search-nav"
         v-if='searchIsShow'>

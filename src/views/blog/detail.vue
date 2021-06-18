@@ -92,6 +92,12 @@ export default {
     },
     // 添加评论
     addRecomment() {
+      if (this.recomment.length === 0) {
+        return this.$hMessage({
+          type: "error",
+          message: "评论不能为空",
+        });
+      }
       this.$axios
         .post("api/blog/addRecomment", {
           blogid: this.detail.id,
@@ -126,10 +132,9 @@ export default {
   position: relative;
   .outer {
     height: 100%;
-    margin: 0 auto;
-    width: 1200px;
-    min-width: 1200px;
-    margin: 0 auto;
+    margin-left: 15%;
+    width: 1000px;
+    min-width: 1000px;
     padding: 20px 20px;
     overflow: hidden;
     box-sizing: border-box;
@@ -208,7 +213,7 @@ export default {
   .comment {
     min-width: 300px;
     height: 100%;
-    width: calc(50% - 620px);
+    width: calc(50% - 520px);
     position: absolute;
     top: 0px;
     right: 20px;

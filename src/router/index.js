@@ -79,11 +79,11 @@ const routes = [
     name: 'tv',
     component: () => import('../views/tv/tv.vue')
   },
-  {
-    path: '/music',
-    name: 'music',
-    component: () => import('../views/music.vue')
-  }
+  // {
+  //   path: '/music',
+  //   name: 'music',
+  //   component: () => import('../views/music.vue')
+  // }
 ]
 
 const router = new VueRouter({

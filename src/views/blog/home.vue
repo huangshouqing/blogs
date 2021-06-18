@@ -12,48 +12,61 @@
       </div>
     </div>
     <div class="outer">
-      <section id="main"
-        v-loading.fullscreen.lock="fullscreenLoading">
-        <div v-if='!nodata'
-          class='showData'>
-          <el-tabs tab-position="left">
-            <el-tab-pane :label="item.type"
-              v-for='(item,index) in list'
-              :key='index'>
-              <article class="article"
-                v-for="article in item.children"
-                :key="article.id"
-                @click="todetail({
+      <section id="main">
+        <div class='showData'>
+          <el-tabs tab-position="right"
+            @tab-click='tabClick'
+            v-model='chose'
+            v-loading="fullscreenLoading">
+            <el-tab-pane :label="item.value"
+              :name="item.id+''"
+              v-for='item in typeList'
+              :key='item.id'>
+              <div v-if='!nodata'>
+                <article class="article"
+                  v-for="article in list"
+                  :key="article.id"
+                  @click="todetail({
                     title: article.title,
                     time: time(article.createtime),
                     con: article.content,
                     au: article.author,
                     id: article.id
                   })">
-                <div class="article-inner">
-                  <div class='article-title'>{{ article.title }}</div>
-                  <div class="article-meta">
-                    {{ time(article.createtime) }} | {{article.author}}
+                  <div class="article-inner">
+                    <div class='article-title'>{{ article.title }}</div>
+                    <div class="article-meta">
+                      {{ time(article.createtime) }} | {{article.author}}
+                    </div>
+                    <div class='article-content'
+                      v-html='article.content'>
+                    </div>
+                    <div class='article-other'>
+                      <p class='info'>
+                        <i class='iconfont icon-comment'></i>
+                        <span class='number'>&nbsp;&nbsp;&nbsp;5</span>
+                      </p>
+                    </div>
                   </div>
-                  <div class='article-content'
-                    v-html='article.content'>
-                  </div>
-                  <div class='article-other'>
-                    <p class='info'>
-                      <i class='iconfont icon-comment'></i>
-                      <span class='number'>&nbsp;&nbsp;&nbsp;5</span>
-                    </p>
-                  </div>
-                </div>
-              </article>
+                </article>
+              </div>
+              <div v-else>
+                <i class='el-icon-tickets nodata'></i>
+              </div>
             </el-tab-pane>
-
           </el-tabs>
+        </div>
+        <div class='pagination'>
+          <el-pagination background
+            :page-size.sync='pageSize'
+            @current-change='currentChange'
+            :current-page.sync='curPage'
+            layout="prev, pager, next"
+            hide-on-single-page
+            :total="total">
+          </el-pagination>
+        </div>
 
-        </div>
-        <div v-else>
-          <i class='el-icon-tickets nodata'></i>
-        </div>
       </section>
     </div>
   </div>
@@ -64,10 +77,13 @@ export default {
   name: "Home",
   data() {
     return {
-      activeNames: "",
+      chose: null,
       list: [],
       typeList: [],
       fullscreenLoading: false,
+      curPage: 1,
+      pageSize: 5,
+      total: null,
     };
   },
   computed: {
@@ -81,6 +97,14 @@ export default {
     this.getlist();
   },
   methods: {
+    tabClick(el) {
+      this.chose = el.name;
+      this.getlist();
+    },
+    currentChange(val) {
+      this.curPage = val;
+      this.getlist();
+    },
     // 跳转文章详情
     todetail(data) {
       this.$router.push({
@@ -90,28 +114,32 @@ export default {
         },
       });
     },
+    // 获取类型列表
     getTypeList() {
       return this.$axios.get("api/blog/getTypeList").then((res) => {
         if (res.data.code === 0) {
           res = res.data;
           this.typeList = res.data;
+          this.chose = this.typeList[0].id + "";
         }
       });
     },
+    // 获取列表
     getlist() {
-      this.$axios.get("api/blog/list").then((res) => {
-        if (res.data.code == 0) {
-          this.fullscreenLoading = false;
-          this.list = res.data.data;
-          this.list.forEach((item) => {
-            this.typeList.forEach((type) => {
-              if (Number(item.type_id) === type.id) {
-                this.$set(item, "type", type.value);
-              }
-            });
-          });
-        }
-      });
+      this.fullscreenLoading = true;
+      this.$axios
+        .get(
+          `api/blog/list?type_id=${Number(this.chose)}&&curPage=${
+            this.curPage
+          }&&pageSize=${this.pageSize}`
+        )
+        .then((res) => {
+          if (res.data.code == 0) {
+            this.fullscreenLoading = false;
+            this.list = res.data.data.list;
+            this.total = res.data.data.total;
+          }
+        });
     },
     time(num) {
       let d = new Date(num);
@@ -152,16 +180,16 @@ export default {
         justify-content: center;
         flex-wrap: wrap;
         overflow: auto;
-        height: 100%;
+        height: 95%;
 
         & /deep/ .el-tabs {
-          width: 50%;
+          width: 55%;
           height: 100%;
           .el-tabs__content {
             height: 100%;
             overflow: auto;
-            background-color: #fafafa;
-            scrollbar-color: #eee transparent; /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
+            // background-color: #fafafa;
+            scrollbar-color: transparent transparent; /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
             scrollbar-width: thin; /* 火狐滚动条无法自定义宽度，只能通过此属性使滚动条宽度变细 */
             -ms-overflow-style: none; /* 隐藏滚动条（在IE和Edge两个浏览器中很难更改样式，固采取隐藏方式） */
             &::-webkit-scrollbar {
@@ -174,11 +202,11 @@ export default {
               border-radius: 2px;
             }
             &::-webkit-scrollbar-thumb {
-              background: #eee;
+              background: transparent;
               border-radius: 5px;
             }
             &::-webkit-scrollbar-thumb:hover {
-              background: rgb(196, 196, 196);
+              background: transparent;
             }
             &::-webkit-scrollbar-corner {
               background: transparent;
@@ -240,7 +268,7 @@ export default {
             }
             .article-other {
               height: 30px;
-              padding: 20px;
+              padding: 0px 20px;
               color: rgba(92, 107, 119, 0.6);
               display: flex;
               align-items: center;
@@ -257,6 +285,15 @@ export default {
               }
             }
           }
+        }
+      }
+      .pagination {
+        margin: 20px auto;
+        width: 55%;
+        display: flex;
+        justify-content: flex-start;
+        .el-pagination {
+          margin-left: 40px;
         }
       }
     }
