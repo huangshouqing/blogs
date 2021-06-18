@@ -11,30 +11,34 @@
           </div>
           <div class="article-content"
             v-html='detail.content'></div>
-          <div class="comments">
-            <p>评论:</p>
-            <el-input type='textarea'
-              v-model="recomment"
-              rows='5'></el-input>
-            <div class='submit'>
-              <el-button @click='addRecomment'
-                size='mini'>submit</el-button>
-            </div>
 
-          </div>
-          <div class='comment-area'>
-            <p>评论区:</p>
-            <ul v-if='recommentList.length>0'>
-              <li v-for='item in recommentList'
-                :key='item.id'>
-                <p class='name'>{{item.author}}：</p>
-                <p class='time'>{{time(item.createtime)}}</p>
-                <p class='content'>{{item.content}}</p>
-              </li>
-            </ul>
-            <div v-else style='fontSize:12px;color:#5c6b77'>竟然没有评论，赶紧来骚扰ta~~~~~</div>
-          </div>
         </div>
+      </div>
+    </div>
+    <div class='comment'>
+      <div class="comment-add">
+        <p>评论:</p>
+        <el-input type='textarea'
+          v-model="recomment"
+          rows='5'></el-input>
+        <div class='submit'>
+          <el-button @click='addRecomment'
+            size='mini'>submit</el-button>
+        </div>
+
+      </div>
+      <div class='comment-area'>
+        <p>评论区:</p>
+        <ul v-if='recommentList.length>0'>
+          <li v-for='item in recommentList'
+            :key='item.id'>
+            <p class='name'>{{item.author}}：</p>
+            <p class='time'>{{time(item.createtime)}}</p>
+            <p class='content'>{{item.content}}</p>
+          </li>
+        </ul>
+        <div v-else
+          style='fontSize:12px;color:#5c6b77'>竟然没有评论，赶紧来骚扰ta~~~~~</div>
       </div>
     </div>
   </div>
@@ -119,10 +123,12 @@ export default {
 .home {
   height: calc(100% - 80px);
   color: #000;
+  position: relative;
   .outer {
     height: 100%;
     margin: 0 auto;
     width: 1200px;
+    min-width: 1200px;
     margin: 0 auto;
     padding: 20px 20px;
     overflow: hidden;
@@ -196,61 +202,92 @@ export default {
           background: transparent;
         }
       }
-      .comments {
-        p {
-          text-align: left;
-          height: 80px;
-          line-height: 80px;
-          font-size: 20px;
-        }
-        .submit {
-          text-align: left;
-          margin: 20px 0px;
-        }
-      }
-      .comment-area {
-        p {
-          text-align: left;
-          height: 80px;
-          line-height: 80px;
-          font-size: 20px;
-        }
-        li {
-          width: 100%;
-          height: auto;
-          border-bottom: 1px solid #f0f0f0;
-          overflow: hidden;
-          transition: all 0.5s;
-          .name {
-            width: 59%;
-            height: 50px;
-            margin-left: 10px;
-            line-height: 50px;
-            float: left;
-            font-weight: 700;
-            font-size: 14px;
-            color: #2d8cf0;
+    }
+  }
 
-          }
-          .time {
-            width: 40%;
-            height: 50px;
-            line-height: 50px;
-            float: left;
-            color: #2f4056;
-            text-align: right;
-            font-size: 12px;
-          }
-          .content {
-            width: 95%;
-            margin-left: 2%;
-            height: auto;
-            line-height: 20px;
-            padding-bottom: 20px;
-            box-sizing: border-box;
-            color: #787878;
-            font-size: 14px;
-          }
+  .comment {
+    min-width: 300px;
+    height: 100%;
+    width: calc(50% - 620px);
+    position: absolute;
+    top: 0px;
+    right: 20px;
+    overflow: auto;
+    scrollbar-color: transparent transparent; /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
+    scrollbar-width: thin; /* 火狐滚动条无法自定义宽度，只能通过此属性使滚动条宽度变细 */
+    -ms-overflow-style: none; /* 隐藏滚动条（在IE和Edge两个浏览器中很难更改样式，固采取隐藏方式） */
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      /**/
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: transparent;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+    .comment-add {
+      p {
+        text-align: left;
+        height: 80px;
+        line-height: 80px;
+        font-size: 20px;
+      }
+      .submit {
+        text-align: left;
+        margin: 20px 0px;
+      }
+    }
+    .comment-area {
+      p {
+        text-align: left;
+        height: 80px;
+        line-height: 80px;
+        font-size: 20px;
+      }
+      li {
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid #f0f0f0;
+        overflow: hidden;
+        transition: all 0.5s;
+        .name {
+          width: 59%;
+          height: 50px;
+          margin-left: 10px;
+          line-height: 50px;
+          float: left;
+          font-weight: 700;
+          font-size: 14px;
+          color: #2d8cf0;
+        }
+        .time {
+          width: 38%;
+          height: 50px;
+          line-height: 50px;
+          float: left;
+          color: #2f4056;
+          text-align: right;
+          font-size: 12px;
+        }
+        .content {
+          width: 95%;
+          margin-left: 2%;
+          height: auto;
+          line-height: 20px;
+          padding-bottom: 20px;
+          box-sizing: border-box;
+          color: #787878;
+          font-size: 14px;
         }
       }
     }
