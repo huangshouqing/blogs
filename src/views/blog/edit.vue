@@ -14,11 +14,12 @@
       </div>
       <div class="text">
         <span style='white-space: nowrap'>内容：</span>
-        <el-input type='textarea'
+        <div id='editor'></div>
+        <!-- <el-input type='textarea'
           v-model="content"
           id=""
           cols="30"
-          rows="20" />
+          rows="20" /> -->
       </div>
       <div class='add'>
         <el-button @click="edit"
@@ -31,14 +32,21 @@
 </template>
 
 <script>
+import xss from "xss";
+import E from "wangeditor";
 export default {
   data() {
     return {
+      editor: null,
       message: "编辑页面",
       title: "",
       content: "",
       id: null,
     };
+  },
+  mounted() {
+    this.editor = new E("#editor");
+    this.editor.create();
   },
   created() {
     let id = this.$route.query.id;
@@ -48,11 +56,13 @@ export default {
         this.title = res.data.data.title;
         this.content = res.data.data.content;
         this.id = id;
+        this.editor.txt.html(this.content);
       });
     }
   },
   methods: {
     edit() {
+      this.content = xss(this.editor.txt.html());
       if (this.title.trim() != "" && this.content != "") {
         var data = {
           id: this.id,
@@ -84,9 +94,11 @@ export default {
 
 <style scoped>
 .main {
-  width: 100%;
+  width: 1200px;
+  min-width: 1200px;
   padding: 0px 40px;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .header {

@@ -14,8 +14,10 @@
       </section>
       <section id="content"
         v-loading="contentLoading">
+        <el-color-picker v-model="bgColor"></el-color-picker>
         <article class="article">
-          <div class="article-inner">
+          <div class="article-inner"
+            :style="{'background':bgColor}">
             <h2 class='title'>{{ detail.title }}</h2>
             <div class="content"
               v-html="detail.content"></div>
@@ -37,6 +39,7 @@ export default {
   name: "Detail",
   data() {
     return {
+      bgColor: "",
       list: [],
       detail: {},
       fullscreenLoading: false,
@@ -129,11 +132,12 @@ export default {
     box-sizing: border-box;
     display: flex;
     position: relative;
+    justify-content: space-between;
     #menu {
       display: flex;
       flex-wrap: nowrap;
       flex-direction: column;
-      width: 10%;
+      width: 12%;
       overflow-y: auto;
       overflow-x: hidden;
       height: 100%;
@@ -164,17 +168,19 @@ export default {
         cursor: pointer;
         font-weight: bold;
         color: @fontColor;
-        &:hover {
-          transform: scale(1.05);
-        }
+
         .article-inner {
           padding: 10px;
           box-sizing: border-box;
           overflow: hidden;
           background: #fff;
           box-shadow: 1px 2px 3px #ddd;
-          border: 1px solid #ddd;
+          border: 2px solid #000;
           border-radius: 6px;
+          &:hover {
+            background: rgb(88, 88, 88);
+            color: #fff;
+          }
           .content {
             padding: 0 20px;
           }
@@ -186,10 +192,15 @@ export default {
       }
     }
     #content {
-      width: 90%;
+      width: 85%;
       overflow: auto;
       height: 100%;
       position: relative;
+      & /deep/ .el-color-picker {
+        position: absolute;
+        right: 10px;
+        z-index: 1;
+      }
       .article {
         height: 100%;
         overflow: auto;
@@ -199,7 +210,7 @@ export default {
           overflow: hidden;
           padding: 10px 40px;
           box-sizing: border-box;
-          background: transparent;
+          // background: rgba(177, 177, 177, 0.4);
           box-shadow: 1px 2px 3px #ddd;
           // border: 1px solid #ddd;
           border-radius: 3px;

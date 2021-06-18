@@ -251,6 +251,10 @@ html,
 body {
   height: 100%;
 }
-#app{
+#app {
   height: 100%;
+}
+
+* {
+  font-family: Consolas, "微软雅黑";
 }

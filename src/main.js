@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import '@/assets/style/element-reset.less'
 import '@/assets/style/reset.css'
+import "@/assets/iconfont/iconfont.css"
 
 Vue.use(Element)
 Vue.use(Hansan)

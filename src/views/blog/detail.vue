@@ -1,18 +1,41 @@
 <template>
-  <div class="home">
+  <div class="home"
+    v-loading.fullscreen.lock="fullscreenLoading">
     <div class="outer">
-      <section id="main">
-        <article class="article">
-          <div class="article-inner">
-            <h2 class='article-title'>{{ detail.title }}</h2>
-            <div class="article-content">{{ detail.content }}</div>
-            <div class="article-meta">
-              <p>更新时间：{{ time(detail.createtime) }}</p>
-              <p>作者：{{ detail.author }}</p>
-            </div>
+      <div class="article">
+        <div class="article-inner">
+          <h2 class='article-title'>{{ detail.title }}</h2>
+          <div class="article-meta">
+            <p>更新时间：{{ time(detail.createtime) }}</p>
+            <p>作者：{{ detail.author }}</p>
           </div>
-        </article>
-      </section>
+          <div class="article-content"
+            v-html='detail.content'></div>
+          <div class="comments">
+            <p>评论:</p>
+            <el-input type='textarea'
+              v-model="recomment"
+              rows='5'></el-input>
+            <div class='submit'>
+              <el-button @click='addRecomment'
+                size='mini'>submit</el-button>
+            </div>
+
+          </div>
+          <div class='comment-area'>
+            <p>评论区:</p>
+            <ul v-if='recommentList.length>0'>
+              <li v-for='item in recommentList'
+                :key='item.id'>
+                <p class='name'>{{item.author}}：</p>
+                <p class='time'>{{time(item.createtime)}}</p>
+                <p class='content'>{{item.content}}</p>
+              </li>
+            </ul>
+            <div v-else style='fontSize:12px;color:#5c6b77'>竟然没有评论，赶紧来骚扰ta~~~~~</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -23,6 +46,9 @@ export default {
   data() {
     return {
       detail: {},
+      recomment: "",
+      fullscreenLoading: false,
+      recommentList: [],
     };
   },
   computed: {
@@ -30,13 +56,16 @@ export default {
       return this.$route.query.id;
     },
   },
-  created() {
-    this.getDetail();
+  async created() {
+    await this.getDetail();
+    this.getRecomment();
   },
   methods: {
     getDetail() {
-      this.$axios.get(`api/blog/detail?id=${this.id}`).then((res) => {
+      this.fullscreenLoading = true;
+      return this.$axios.get(`api/blog/detail?id=${this.id}`).then((res) => {
         if (res.data.code === 0) {
+          this.fullscreenLoading = false;
           res = res.data;
           this.detail = res.data;
         }
@@ -57,6 +86,29 @@ export default {
         addZero(d.getDate())
       );
     },
+    // 添加评论
+    addRecomment() {
+      this.$axios
+        .post("api/blog/addRecomment", {
+          blogid: this.detail.id,
+          content: this.recomment,
+        })
+        .then((res) => {
+          if (res.data.code === 0) {
+            this.getRecomment();
+          }
+        });
+    },
+    getRecomment() {
+      console.log("this.detail.id", this.detail.id);
+      this.$axios
+        .get(`api/blog/getRecomment?blogid=${this.detail.id}`)
+        .then((res) => {
+          if (res.data.code === 0) {
+            this.recommentList = res.data.data;
+          }
+        });
+    },
   },
 
   watch: {},
@@ -66,6 +118,7 @@ export default {
 <style lang="less" scoped>
 .home {
   height: calc(100% - 80px);
+  color: #000;
   .outer {
     height: 100%;
     margin: 0 auto;
@@ -74,65 +127,129 @@ export default {
     padding: 20px 20px;
     overflow: hidden;
     box-sizing: border-box;
-    #main {
-      width: 100%;
-      overflow: auto;
+
+    .article {
       height: 100%;
-      .article {
+      overflow: auto;
+      position: relative;
+
+      .article-inner {
         height: 100%;
         overflow: auto;
-        position: relative;
+        padding: 10px;
+        box-sizing: border-box;
+        background: transparent;
+        box-shadow: 1px 2px 3px #ddd;
+        border-radius: 3px;
+        padding-bottom: 15px;
 
-        .article-inner {
-          height: 100%;
-          overflow: auto;
-          padding: 10px;
-          box-sizing: border-box;
-          // background: #fff;
+        .article-title {
+          font-size: 30px;
+          text-align: left;
+          padding: 10px 0px;
+          color: #5c6b77;
+          font-weight: 700;
+        }
+        .article-content {
+          text-align: left;
+          line-height: 30px;
+          font-size: 14px;
+          font-family: Consolas, "微软雅黑";
+          color: #000;
+        }
+        .article-meta {
+          font-size: 14px;
+          color: #5c6b77;
+          font-weight: 500;
+          text-align: left;
+          display: flex;
+          font-size: 12px;
+          height: 30px;
+          line-height: 30px;
+          border-bottom: 1px solid #e8eaec;
+          margin-bottom: 10px;
+          p {
+            margin-right: 40px;
+          }
+        }
+
+        scrollbar-color: transparent transparent; /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
+        scrollbar-width: thin; /* 火狐滚动条无法自定义宽度，只能通过此属性使滚动条宽度变细 */
+        -ms-overflow-style: none; /* 隐藏滚动条（在IE和Edge两个浏览器中很难更改样式，固采取隐藏方式） */
+        &::-webkit-scrollbar {
+          width: 5px;
+          height: 5px;
+          /**/
+        }
+        &::-webkit-scrollbar-track {
           background: transparent;
-          box-shadow: 1px 2px 3px #ddd;
-          // border: 1px solid #ddd;
-          border-radius: 3px;
-          padding-bottom: 15px;
-
-          .article-title {
-            font-size: 30px;
-            text-align: center;
-            padding: 20px;
-          }
-          .article-content {
-            text-align: left;
-            line-height: 30px;
-          }
-          .article-meta {
+          border-radius: 2px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: transparent;
+          border-radius: 5px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+          background: transparent;
+        }
+        &::-webkit-scrollbar-corner {
+          background: transparent;
+        }
+      }
+      .comments {
+        p {
+          text-align: left;
+          height: 80px;
+          line-height: 80px;
+          font-size: 20px;
+        }
+        .submit {
+          text-align: left;
+          margin: 20px 0px;
+        }
+      }
+      .comment-area {
+        p {
+          text-align: left;
+          height: 80px;
+          line-height: 80px;
+          font-size: 20px;
+        }
+        li {
+          width: 100%;
+          height: auto;
+          border-bottom: 1px solid #f0f0f0;
+          overflow: hidden;
+          transition: all 0.5s;
+          .name {
+            width: 59%;
+            height: 50px;
+            margin-left: 10px;
+            line-height: 50px;
+            float: left;
+            font-weight: 700;
             font-size: 14px;
-            color: #b5b5b5;
-            padding: 0 0 7px 0;
-            font-weight: 500;
-            text-align: right;
-          }
+            color: #2d8cf0;
 
-          scrollbar-color: #000 transparent; /* 第一个方块颜色，第二个轨道颜色(用于更改火狐浏览器样式) */
-          scrollbar-width: thin; /* 火狐滚动条无法自定义宽度，只能通过此属性使滚动条宽度变细 */
-          -ms-overflow-style: none; /* 隐藏滚动条（在IE和Edge两个浏览器中很难更改样式，固采取隐藏方式） */
-          &::-webkit-scrollbar {
-            width: 5px;
-            height: 5px;
-            /**/
           }
-          &::-webkit-scrollbar-track {
-            background: transparent;
-            border-radius: 2px;
+          .time {
+            width: 40%;
+            height: 50px;
+            line-height: 50px;
+            float: left;
+            color: #2f4056;
+            text-align: right;
+            font-size: 12px;
           }
-          &::-webkit-scrollbar-thumb {
-            background: #000;
-            border-radius: 5px;
-          }
-          &::-webkit-scrollbar-thumb:hover {
-            background: #000;
-          }
-          &::-webkit-scrollbar-corner {
-            background: transparent;
+          .content {
+            width: 95%;
+            margin-left: 2%;
+            height: auto;
+            line-height: 20px;
+            padding-bottom: 20px;
+            box-sizing: border-box;
+            color: #787878;
+            font-size: 14px;
           }
         }
       }

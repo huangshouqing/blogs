@@ -20,7 +20,7 @@ body,
 html {
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: #fafafa;
 }
 a {
   text-decoration: none;
@@ -32,8 +32,8 @@ a {
   text-align: center;
   color: #2c3e50;
   background-image: url("./assets/bg/bg.png");
-  background-size: 100%;
-  background-position: 0%;
+  background-size: 50%;
+  background-position: 50%;
   background-repeat: no-repeat;
 }
 .el-loading-mask {

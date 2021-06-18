@@ -14,7 +14,10 @@
     "hansan-vui": "^0.0.1-alpha.23",
     "screenfull": "^5.1.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "wangeditor": "^4.7.4",
+    "xss": "^1.0.9",
+    "zw-player": "^1.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

@@ -2,25 +2,23 @@
 <template>
   <div class='movie-detail'
     v-loading.fullscreen.lock="fullscreenLoading">
-    <ul class='menu'
-      v-if='fold===false'>
+    <ul class='menu'>
       <li v-for="(item,index) in list"
-        @click='()=>{chose = item.value}'
-        :class="{isChose:chose===item.value,'item':true}"
+        @click='()=>{chose = item.pc}'
+        :class="{isChose:chose===item.pc,'item':true}"
         :key='index'>
         {{item.label}}
       </li>
     </ul>
     <div class='movie-title'>
-      <span class='title'>{{title}}</span>
-      <span class='type'> {{realType}}</span>
+      <span class='title'></span>
     </div>
     <div id='player'>
-      <i class='el-icon-full-screen'
-        @click="screen"></i>
       <iframe :src="chose"
         class='movieplayer'
         frameborder="0"></iframe>
+      <i class='el-icon-full-screen'
+        @click="screen"></i>
     </div>
 
   </div>
@@ -32,53 +30,24 @@ export default {
     return {
       fullscreenLoading: false,
       fullscreen: false,
-      fold: false, //是否是合起来
       list: [],
       chose: "",
     };
   },
-  computed: {
-    movieSrc() {
-      return this.$route.query.movieSrc;
-    },
-    type() {
-      return this.$route.query.type;
-    },
-    title() {
-      return this.$route.query.title;
-    },
-    realType() {
-      switch (this.type) {
-        case "dianying":
-          return "电影";
-        case "donghua":
-          return "动画";
-        case "zongyi":
-          return "综艺";
-        case "dianshi":
-          return "电视剧";
-        default:
-          return "";
-      }
-    },
-  },
   created() {
-    this.getPlayList();
+    this.getTvList();
   },
   methods: {
-    getPlayList() {
+    getTvList() {
       this.fullscreenLoading = true;
-      this.$axios
-        .get(`api/movie/detail?movieSrc=${this.movieSrc}&type=${this.type}`)
-        .then((res) => {
-          this.fullscreenLoading = false;
-          if (res.data.code === 0) {
-            res = res.data;
-            // this.list = res.data.slice(0, res.data.length - 1);
-            this.list = res.data;
-            this.chose = this.list[0].value;
-          }
-        });
+      this.$axios.get("api/tv/tvList").then((res) => {
+        this.fullscreenLoading = false;
+        if (res.data.code === 0) {
+          res = res.data;
+          this.list = res.data;
+          this.chose = this.list[0].pc;
+        }
+      });
     },
     screen() {
       // let element = document.documentElement;//设置后就是我们平时的整个页面全屏效果
@@ -124,7 +93,7 @@ export default {
     top: 10px;
     cursor: pointer;
     font-size: 30px;
-    color: #000;
+    color: #fff;
   }
   .el-icon-full-screen {
     position: absolute;

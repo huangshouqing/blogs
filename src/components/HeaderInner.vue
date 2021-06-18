@@ -14,6 +14,12 @@
         <router-link tag="a"
           to="/movieSearch"
           href="">影视搜索</router-link>
+        <router-link tag="a"
+          to="/tv"
+          href="">电视家</router-link>
+        <router-link tag="a"
+          to="/music"
+          href="">music</router-link>
       </nav>
       <nav class="search-nav"
         v-if='searchIsShow'>
@@ -27,10 +33,11 @@
           @click='search'></i>
       </nav>
       <nav class='setting-nav'>
-        <a @click='logout' style='cursor:pointer'>退出登录</a>
+        <a @click='logout'
+          style='cursor:pointer'>退出登录</a>
         <router-link tag="a"
           to="/admin"
-          href="">管理中心</router-link>
+          href="">创作者中心</router-link>
       </nav>
     </div>
   </div>

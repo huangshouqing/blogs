@@ -74,6 +74,16 @@ const routes = [
     name: 'movieDetail',
     component: () => import('../views/movie/detail.vue')
   },
+  {
+    path: '/tv',
+    name: 'tv',
+    component: () => import('../views/tv/tv.vue')
+  },
+  {
+    path: '/music',
+    name: 'music',
+    component: () => import('../views/music.vue')
+  }
 ]
 
 const router = new VueRouter({

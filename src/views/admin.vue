@@ -27,6 +27,10 @@
         </el-table-column>
         <el-table-column prop="content"
           label="内容">
+          <template slot-scope="scope">
+            <div v-html='scope.row.content'
+              class='article-content'></div>
+          </template>
         </el-table-column>
         <el-table-column fixed="right"
           label="操作"
@@ -47,7 +51,7 @@
 export default {
   data() {
     return {
-      message: "管理中心",
+      message: "创作者中心",
       username: "",
       password: "",
       blog: [],
@@ -139,9 +143,11 @@ export default {
 <style scoped lang='less'>
 .main {
   height: calc(100% - 80px);
-  width: 100%;
+  width: 1200px;
+  min-width: 1200px;
   padding: 0px 40px;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .header {
@@ -161,11 +167,14 @@ export default {
 .search {
   display: flex;
   margin-bottom: 20px;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 .search /deep/ .el-input {
   width: 200px;
+  position: absolute;
+  right: 10px;
+  top: 100px;
 }
 ul {
   padding: 0;
@@ -203,6 +212,12 @@ ul li {
   }
   &::-webkit-scrollbar-corner {
     background: transparent;
+  }
+  .article-content {
+    max-height: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
