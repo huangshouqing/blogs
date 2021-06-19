@@ -2,6 +2,8 @@
 <template>
   <div class='movie-detail'
     v-loading.fullscreen.lock="fullscreenLoading">
+    <i class='iconfont icon-return'
+      @click='()=>{this.$router.back(-1)}'></i>
     <ul class='menu'>
       <li v-for="(item,index) in list"
         @click='()=>{chose = item.pc}'
@@ -102,6 +104,14 @@ export default {
     font-size: 30px;
     color: #fff;
     top: 10px;
+  }
+  .icon-return {
+    position: absolute;
+    left: 50px;
+    bottom: 50%;
+    font-size: 30px;
+    color: #000;
+    cursor: pointer;
   }
   & > ul {
     top: 50%;

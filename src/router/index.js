@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import home from '../views/blog/home.vue'
 
 Vue.use(VueRouter)
 
@@ -11,9 +10,24 @@ const routes = [
     component: () => import('../views/login.vue')
   },
   {
-    path: '/admin',
-    name: 'admin',
-    component: () => import('../views/admin.vue')
+    path: '/manage',
+    name: 'manage',
+    redirect: '/manage/admin',
+    component: () => import('../views/manage/main.vue'),
+    children: [
+      {
+        path: '/manage/admin',
+        component: () => import('../views/manage/admin.vue')
+      },
+      {
+        path: '/manage/edit',
+        component: () => import('../views/manage/edit.vue')
+      },
+      {
+        path: '/manage/new',
+        component: () => import('../views/manage/new.vue')
+      },
+    ]
   },
   {
     path: '/register',
@@ -22,62 +36,95 @@ const routes = [
   },
   {
     path: '/',
-    name: 'home',
-    component: home
+    redirect: '/blog'
   },
   {
-    path: '/home',
-    redirect: '/'
+    path: '/blog',
+    name: 'blog',
+    redirect: '/blog/list',
+    component: () => import('../views/blog/main.vue'),
+    children: [
+      {
+        path: '/blog/list',
+        component: () => import('../views/blog/list.vue')
+      },
+      {
+        path: '/blog/detail',
+        component: () => import('../views/blog/detail.vue')
+      },
+    ]
   },
   {
-    path: '/detail',
-    name: 'detail',
-    component: () => import('../views/blog/detail.vue')
-  },
-  {
-    path: '/edit',
-    name: 'edit',
-    component: () => import('../views/blog/edit.vue')
-  },
-  {
-    path: '/new',
-    name: 'new',
-    component: () => import('../views/blog/new.vue')
-  },
-  {
-    path: '/bookSearch',
-    name: 'bookSearch',
-    component: () => import('../views/book/bookSearch.vue')
+    path: '/top',
+    name: 'top',
+    redirect: '/top/top',
+    component: () => import('../views/book/main.vue'),
+    children: [
+      {
+        path: '/top/top',
+        component: () => import('../views/book/top.vue')
+      },
+      {
+        path: '/top/menu',
+        component: () => import('../views/book/menu.vue')
+      },
+    ]
   },
   {
     path: '/book',
     name: 'book',
-    component: () => import('../views/book/book.vue')
+    redirect: '/book/bookSearch',
+    component: () => import('../views/book/main.vue'),
+    children: [
+      {
+        path: '/book/bookSearch',
+        name: 'book',
+        component: () => import('../views/book/bookSearch.vue')
+      },
+      {
+        path: '/book/menu',
+        name: 'book',
+        component: () => import('../views/book/menu.vue')
+      },
+    ]
   },
   {
-    path: '/bookMenu',
-    name: 'bookMenu',
-    component: () => import('../views/book/bookMenu.vue')
+    path: '/movie',
+    name: 'movie',
+    redirect: '/movie/movieSearch',
+    component: () => import('../views/movie/main.vue'),
+    children: [
+      {
+        path: '/movie/movieSearch',
+        name: 'movie',
+        component: () => import('../views/movie/search.vue')
+      },
+      {
+        path: '/movie/movieDetail',
+        name: 'movie',
+        component: () => import('../views/movie/detail.vue')
+      },
+    ]
   },
   {
-    path: '/bookContent',
-    name: 'bookContent',
-    component: () => import('../views/book/bookContent.vue')
-  },
-  {
-    path: '/movieSearch',
-    name: 'movieSearch',
-    component: () => import('../views/movie/search.vue')
-  },
-  {
-    path: '/movieDetail',
-    name: 'movieDetail',
-    component: () => import('../views/movie/detail.vue')
-  },
-  {
-    path: '/tv',
-    name: 'tv',
-    component: () => import('../views/tv/tv.vue')
+    path: '/laboratory',
+    name: 'laboratory',
+    redirect: '/laboratory/chose',
+    component: () => import('../views/laboratory/main.vue'),
+    children: [
+      // 
+      {
+        path: '/laboratory/chose',
+        name: 'laboratory',
+        component: () => import('../views/laboratory/chose.vue')
+      },
+      // tv
+      {
+        path: '/laboratory/tv',
+        name: 'laboratory',
+        component: () => import('../views/laboratory/tv.vue')
+      },
+    ]
   },
   // {
   //   path: '/music',

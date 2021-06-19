@@ -37,7 +37,7 @@
             width="100px"
             v-if='fullscreenLoading===false'
             class='nodata'> -->
-          <i class='el-icon-tickets nodata'></i>
+          <i class='iconfont icon-wushuju nodata'></i>
         </div>
 
       </section>
@@ -72,7 +72,7 @@ export default {
     },
     todetail(data) {
       this.$router.push({
-        path: "/bookMenu",
+        path: "/book/menu",
         query: {
           bookUrl: data.link,
         },

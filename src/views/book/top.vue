@@ -48,7 +48,7 @@ export default {
     },
     todetail(data) {
       this.$router.push({
-        path: "/bookMenu",
+        path: "/top/menu",
         query: {
           bookUrl: data.link,
         },

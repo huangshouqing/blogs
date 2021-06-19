@@ -1,6 +1,8 @@
 <template>
   <div class="home"
     v-loading.fullscreen.lock="fullscreenLoading">
+    <i class='iconfont icon-return'
+      @click='()=>{this.$router.back(-1)}'></i>
     <div class="outer">
       <div class="article">
         <div class="article-inner">
@@ -130,6 +132,18 @@ export default {
   height: calc(100% - 80px);
   color: #000;
   position: relative;
+  background-image: url("../../assets/bg/bg.png");
+  background-size: 50%;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  .icon-return {
+    position: absolute;
+    left: 50px;
+    bottom: 50%;
+    font-size: 30px;
+    color: #000;
+    cursor: pointer;
+  }
   .outer {
     height: 100%;
     margin-left: 15%;

@@ -3,20 +3,20 @@
     <div class="header-outer">
       <nav class="main-nav">
         <router-link tag="a"
-          to="/"
+          to="/blog"
           href="">博客</router-link>
         <router-link tag="a"
-          to="/book"
+          to="/top"
           href="">小说top榜</router-link>
         <router-link tag="a"
-          to="/bookSearch"
+          to="/book"
           href="">小说搜索</router-link>
         <router-link tag="a"
-          to="/movieSearch"
+          to="/movie"
           href="">影视搜索</router-link>
         <router-link tag="a"
-          to="/tv"
-          href="">电视家</router-link>
+          to="/laboratory"
+          href="">实验室</router-link>
         <!-- <router-link tag="a"
           to="/music"
           href="">music</router-link> -->
@@ -36,7 +36,7 @@
         <a @click='logout'
           style='cursor:pointer'>退出登录</a>
         <router-link tag="a"
-          to="/admin"
+          to="/manage"
           href="">创作者中心</router-link>
       </nav>
     </div>
@@ -58,9 +58,9 @@ export default {
     },
     searchPlayholder() {
       switch (this.searchType) {
-        case "movieSearch":
+        case "movie":
           return "请输入电影名称";
-        case "bookSearch":
+        case "book":
           return "请输入小说名称或者作者";
         default:
           return "";
@@ -68,9 +68,9 @@ export default {
     },
     searchIsShow() {
       switch (this.searchType) {
-        case "movieSearch":
+        case "movie":
           return true;
-        case "bookSearch":
+        case "book":
           return true;
         default:
           return false;
@@ -114,10 +114,10 @@ export default {
         return;
       }
       switch (this.searchType) {
-        case "movieSearch":
+        case "movie":
           this.$bus.$emit("movieSearch", this.searchValue);
           break;
-        case "bookSearch":
+        case "book":
           this.$bus.$emit("bookSearch", this.searchValue);
           break;
         default:
@@ -178,6 +178,10 @@ export default {
         transform: scale(1.2);
         opacity: 1;
       }
+      &.router-link-active {
+        transform: scale(1.2);
+        opacity: 1;
+      }
     }
     a:hover {
       opacity: 1;
@@ -221,6 +225,10 @@ export default {
       text-shadow: 0 1px rgba(0, 0, 0, 0.2);
       padding: 0 15px;
       &.router-link-exact-active {
+        transform: scale(1.2);
+        opacity: 1;
+      }
+      &.router-link-active {
         transform: scale(1.2);
         opacity: 1;
       }

@@ -2,7 +2,10 @@
 <template>
   <div id="app">
     <HeaderInner v-if="$route.path!=='/login'&&$route.path!=='/register'" />
-    <router-view />
+    <transition name="fade"
+      mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 <script>
@@ -30,11 +33,7 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  background-image: url("./assets/bg/bg.png");
-  background-size: 50%;
-  background-position: 50%;
-  background-repeat: no-repeat;
+  color: #2c3e50
 }
 .el-loading-mask {
   background-color: rgba(255, 255, 255, 1) !important;

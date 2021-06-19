@@ -1,6 +1,8 @@
 <template>
   <div class="home"
     v-loading.fullscreen.lock="fullscreenLoading">
+    <i class='iconfont icon-return'
+      @click='()=>{this.$router.back(-1)}'></i>
     <div class="outer">
       <section id="menu">
         <article class="article"
@@ -123,6 +125,15 @@ export default {
 @fontColor: #2c3e50;
 .home {
   height: calc(100% - 80px);
+  .icon-return {
+    position: absolute;
+    left: 50px;
+    bottom: 50%;
+    font-size: 30px;
+    color: #000;
+    cursor: pointer;
+    z-index: 1;
+  }
   .outer {
     height: 100%;
     margin: 0 auto;
@@ -132,7 +143,7 @@ export default {
     box-sizing: border-box;
     display: flex;
     position: relative;
-    justify-content: space-between;
+    justify-content: center;
     #menu {
       display: flex;
       flex-wrap: nowrap;
@@ -192,7 +203,7 @@ export default {
       }
     }
     #content {
-      width: 85%;
+      width: 70%;
       overflow: auto;
       height: 100%;
       position: relative;

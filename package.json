@@ -13,6 +13,7 @@
     "element-ui": "^2.15.2",
     "hansan-vui": "^0.0.1-alpha.23",
     "jquery": "^3.6.0",
+    "live2d-widget": "^3.1.4",
     "screenfull": "^5.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

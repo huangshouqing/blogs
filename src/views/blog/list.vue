@@ -51,7 +51,7 @@
                 </article>
               </div>
               <div v-else>
-                <i class='el-icon-tickets nodata'></i>
+                <i class='iconfont icon-wushuju nodata'></i>
               </div>
             </el-tab-pane>
           </el-tabs>
@@ -108,7 +108,7 @@ export default {
     // 跳转文章详情
     todetail(data) {
       this.$router.push({
-        name: "detail",
+        path: "/blog/detail",
         query: {
           id: data.id,
         },

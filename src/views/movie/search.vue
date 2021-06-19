@@ -37,7 +37,7 @@
             width="100px"
             v-if='fullscreenLoading===false'
             class='nodata'> -->
-          <i class='el-icon-tickets nodata'></i>
+          <i class='iconfont icon-wushuju nodata'></i>
         </div>
       </section>
     </div>
@@ -71,7 +71,7 @@ export default {
     },
     todetail(data) {
       this.$router.push({
-        path: "/movieDetail",
+        path: "/movie/movieDetail",
         query: {
           movieSrc: data.link,
           type: data.type,
