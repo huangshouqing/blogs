@@ -2,6 +2,8 @@
 <template>
   <div class='movie-detail'
     v-loading.fullscreen.lock="fullscreenLoading">
+    <i class='iconfont icon-return'
+      @click="handlerReturn"></i>
     <ul class='menu'
       v-if='fold===false'>
       <li v-for="(item,index) in list"
@@ -65,7 +67,21 @@ export default {
   created() {
     this.getPlayList();
   },
+  beforeRouteEnter(to, from, next) {
+    if (from.path === "/") {
+      next();
+    } else {
+      localStorage.setItem("fromRouter", from.path);
+      next();
+    }
+  },
   methods: {
+    handlerReturn() {
+      const fromRouter = localStorage.getItem("fromRouter");
+      this.$router.push({
+        path: fromRouter,
+      });
+    },
     getPlayList() {
       this.fullscreenLoading = true;
       this.$axios
@@ -133,6 +149,14 @@ export default {
     font-size: 30px;
     color: #fff;
     top: 10px;
+  }
+  .icon-return {
+    position: absolute;
+    left: 20px;
+    bottom: 50%;
+    font-size: 30px;
+    color: #000;
+    cursor: pointer;
   }
   & > ul {
     top: 50%;

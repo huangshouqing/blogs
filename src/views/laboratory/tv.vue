@@ -3,7 +3,7 @@
   <div class='movie-detail'
     v-loading.fullscreen.lock="fullscreenLoading">
     <i class='iconfont icon-return'
-      @click='()=>{this.$router.back(-1)}'></i>
+      @click="handlerReturn"></i>
     <ul class='menu'>
       <li v-for="(item,index) in list"
         @click='()=>{chose = item.pc}'
@@ -39,7 +39,21 @@ export default {
   created() {
     this.getTvList();
   },
+  beforeRouteEnter(to, from, next) {
+    if (from.path === "/") {
+      next();
+    } else {
+      localStorage.setItem("fromRouter", from.path);
+      next();
+    }
+  },
   methods: {
+    handlerReturn() {
+      const fromRouter = localStorage.getItem("fromRouter");
+      this.$router.push({
+        path: fromRouter,
+      });
+    },
     getTvList() {
       this.fullscreenLoading = true;
       this.$axios.get("api/tv/tvList").then((res) => {
@@ -107,7 +121,7 @@ export default {
   }
   .icon-return {
     position: absolute;
-    left: 50px;
+    left: 20px;
     bottom: 50%;
     font-size: 30px;
     color: #000;

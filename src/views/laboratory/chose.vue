@@ -3,7 +3,7 @@
   <div class="chose">
     <div v-for='item in list'
       :key="item.name"
-      @click='enter(item.router)'
+      @click='enter(item)'
       class='item'>{{item.name}}</div>
   </div>
 </template>
@@ -15,7 +15,8 @@ export default {
       list: [
         {
           name: "音乐实验室",
-          router: "/cloudMusic",
+          // url: "http://8.134.121.215:8083/",
+          router: "/laboratory/cloudMusic",
         },
         {
           name: "游戏实验室",
@@ -29,10 +30,14 @@ export default {
     };
   },
   methods: {
-    enter(val) {
-      this.$router.push({
-        path: val,
-      });
+    enter(item) {
+      if (item.url) {
+        window.open(item.url);
+      } else if (item.router) {
+        this.$router.push({
+          path: item.router,
+        });
+      }
     },
   },
 };

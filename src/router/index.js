@@ -124,6 +124,11 @@ const routes = [
         name: 'laboratory',
         component: () => import('../views/laboratory/tv.vue')
       },
+      {
+        path: '/laboratory/cloudMusic',
+        name: 'laboratory',
+        component: () => import('../views/laboratory/cloudMusic.vue')
+      },
     ]
   },
   // {

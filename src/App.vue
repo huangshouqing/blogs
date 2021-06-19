@@ -4,7 +4,9 @@
     <HeaderInner v-if="$route.path!=='/login'&&$route.path!=='/register'" />
     <transition name="fade"
       mode="out-in">
-      <router-view />
+      <!-- <keep-alive> -->
+        <router-view />
+      <!-- </keep-alive> -->
     </transition>
   </div>
 </template>
@@ -33,7 +35,7 @@ a {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50
+  color: #2c3e50;
 }
 .el-loading-mask {
   background-color: rgba(255, 255, 255, 1) !important;

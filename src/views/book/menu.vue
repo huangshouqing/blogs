@@ -2,7 +2,7 @@
   <div class="home"
     v-loading.fullscreen.lock="fullscreenLoading">
     <i class='iconfont icon-return'
-      @click='()=>{this.$router.back(-1)}'></i>
+      @click="handlerReturn"></i>
     <div class="outer">
       <section id="menu">
         <article class="article"
@@ -47,6 +47,7 @@ export default {
       fullscreenLoading: false,
       contentLoading: false,
       chapterUrl: "",
+      from: "",
     };
   },
   computed: {
@@ -57,7 +58,21 @@ export default {
   created() {
     this.getMenuList();
   },
+  beforeRouteEnter(to, from, next) {
+    if (from.path === "/") {
+      next();
+    } else {
+      localStorage.setItem("fromRouter", from.path);
+      next();
+    }
+  },
   methods: {
+    handlerReturn() {
+      const fromRouter = localStorage.getItem("fromRouter");
+      this.$router.push({
+        path: fromRouter,
+      });
+    },
     // 小说详情
     todetail(data) {
       this.chapterUrl = data.link;
@@ -127,7 +142,7 @@ export default {
   height: calc(100% - 80px);
   .icon-return {
     position: absolute;
-    left: 50px;
+    left: 20px;
     bottom: 50%;
     font-size: 30px;
     color: #000;

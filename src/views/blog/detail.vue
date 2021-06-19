@@ -2,7 +2,7 @@
   <div class="home"
     v-loading.fullscreen.lock="fullscreenLoading">
     <i class='iconfont icon-return'
-      @click='()=>{this.$router.back(-1)}'></i>
+      @click="()=>{this.$router.push('/blog/list')}"></i>
     <div class="outer">
       <div class="article">
         <div class="article-inner">
@@ -138,7 +138,7 @@ export default {
   background-repeat: no-repeat;
   .icon-return {
     position: absolute;
-    left: 50px;
+    left: 20px;
     bottom: 50%;
     font-size: 30px;
     color: #000;
