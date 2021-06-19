@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  name: "videoSearch",
+  name: "movie_search",
   data() {
     return {
       searchValue: "",
@@ -71,7 +71,7 @@ export default {
     },
     todetail(data) {
       this.$router.push({
-        path: "/movie/movieDetail",
+        path: "/movie/movie_detail",
         query: {
           movieSrc: data.link,
           type: data.type,
@@ -81,10 +81,10 @@ export default {
     },
   },
   created() {
-    this.$bus.$on("movieSearch", this.search);
+    this.$bus.$on("movie_search", this.search);
   },
   beforeDestroy() {
-    this.$bus.$off("movieSearch", this.search);
+    this.$bus.$off("movie_search", this.search);
   },
 };
 </script>

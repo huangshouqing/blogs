@@ -10,6 +10,7 @@
 import { L2Dwidget } from "live2d-widget";
 
 export default {
+  name: "blog",
   data() {
     return {};
   },

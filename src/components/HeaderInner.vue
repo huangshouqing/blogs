@@ -58,9 +58,9 @@ export default {
     },
     searchPlayholder() {
       switch (this.searchType) {
-        case "movie":
+        case "movie_search":
           return "请输入电影名称";
-        case "book":
+        case "book_search":
           return "请输入小说名称或者作者";
         default:
           return "";
@@ -68,9 +68,9 @@ export default {
     },
     searchIsShow() {
       switch (this.searchType) {
-        case "movie":
+        case "movie_search":
           return true;
-        case "book":
+        case "book_search":
           return true;
         default:
           return false;
@@ -114,11 +114,11 @@ export default {
         return;
       }
       switch (this.searchType) {
-        case "movie":
-          this.$bus.$emit("movieSearch", this.searchValue);
+        case "movie_search":
+          this.$bus.$emit("movie_search", this.searchValue);
           break;
-        case "book":
-          this.$bus.$emit("bookSearch", this.searchValue);
+        case "book_search":
+          this.$bus.$emit("book_search", this.searchValue);
           break;
         default:
           break;

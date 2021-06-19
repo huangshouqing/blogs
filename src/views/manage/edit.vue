@@ -35,6 +35,7 @@
 import xss from "xss";
 import E from "wangeditor";
 export default {
+  name: "edit",
   data() {
     return {
       editor: null,
@@ -77,7 +78,7 @@ export default {
               type: "info",
               message: "博客编辑成功",
             });
-            this.$router.push("admin");
+            this.$router.push("/manage/admin");
           } else {
             // 添加失败
             this.$hMessage({

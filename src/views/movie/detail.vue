@@ -30,6 +30,7 @@
 
 <script>
 export default {
+  name: "movie_detail",
   data() {
     return {
       fullscreenLoading: false,

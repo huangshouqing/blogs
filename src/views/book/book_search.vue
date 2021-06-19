@@ -80,10 +80,10 @@ export default {
     },
   },
   created() {
-    this.$bus.$on("bookSearch", this.search);
+    this.$bus.$on("book_search", this.search);
   },
   beforeDestroy() {
-    this.$bus.$off("bookSearch", this.search);
+    this.$bus.$off("book_search", this.search);
   },
 };
 </script>

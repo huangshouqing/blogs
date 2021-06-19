@@ -46,10 +46,12 @@ const routes = [
     children: [
       {
         path: '/blog/list',
+        name: 'blog_list',
         component: () => import('../views/blog/list.vue')
       },
       {
         path: '/blog/detail',
+        name: 'blog_detail',
         component: () => import('../views/blog/detail.vue')
       },
     ]
@@ -62,10 +64,12 @@ const routes = [
     children: [
       {
         path: '/top/top',
+        name: 'top',
         component: () => import('../views/book/top.vue')
       },
       {
         path: '/top/menu',
+        name: 'menu',
         component: () => import('../views/book/menu.vue')
       },
     ]
@@ -73,17 +77,17 @@ const routes = [
   {
     path: '/book',
     name: 'book',
-    redirect: '/book/bookSearch',
+    redirect: '/book/book_search',
     component: () => import('../views/book/main.vue'),
     children: [
       {
-        path: '/book/bookSearch',
-        name: 'book',
-        component: () => import('../views/book/bookSearch.vue')
+        path: '/book/book_search',
+        name: 'book_search',
+        component: () => import('../views/book/book_search.vue')
       },
       {
         path: '/book/menu',
-        name: 'book',
+        name: 'menu',
         component: () => import('../views/book/menu.vue')
       },
     ]
@@ -91,17 +95,17 @@ const routes = [
   {
     path: '/movie',
     name: 'movie',
-    redirect: '/movie/movieSearch',
+    redirect: '/movie/movie_search',
     component: () => import('../views/movie/main.vue'),
     children: [
       {
-        path: '/movie/movieSearch',
-        name: 'movie',
+        path: '/movie/movie_search',
+        name: 'movie_search',
         component: () => import('../views/movie/search.vue')
       },
       {
-        path: '/movie/movieDetail',
-        name: 'movie',
+        path: '/movie/movie_detail',
+        name: 'movie_detail',
         component: () => import('../views/movie/detail.vue')
       },
     ]
@@ -124,6 +128,7 @@ const routes = [
         name: 'laboratory',
         component: () => import('../views/laboratory/tv.vue')
       },
+      // 音乐
       {
         path: '/laboratory/cloudMusic',
         name: 'laboratory',

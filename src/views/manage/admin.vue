@@ -49,6 +49,7 @@
 
 <script>
 export default {
+  name:'admin',
   data() {
     return {
       message: "创作者中心",

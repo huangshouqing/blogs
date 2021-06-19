@@ -4,9 +4,7 @@
     <HeaderInner v-if="$route.path!=='/login'&&$route.path!=='/register'" />
     <transition name="fade"
       mode="out-in">
-      <!-- <keep-alive> -->
-        <router-view />
-      <!-- </keep-alive> -->
+        <router-view ></router-view>
     </transition>
   </div>
 </template>

@@ -74,7 +74,7 @@
 
 <script>
 export default {
-  name: "Home",
+  name: "blog_list",
   data() {
     return {
       chose: null,

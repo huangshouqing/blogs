@@ -46,6 +46,7 @@
 import xss from "xss";
 import E from "wangeditor";
 export default {
+  name: "new",
   data() {
     return {
       editor: null,
@@ -80,7 +81,7 @@ export default {
               type: "info",
               message: "博客添加成功",
             });
-            this.$router.push("home");
+            this.$router.push("/blog/list");
           } else {
             // 添加失败
             this.$hMessage({
