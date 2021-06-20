@@ -31,7 +31,7 @@ export default {
 <style lang='less' scoped>
 .cloudMusic {
   width: 100%;
-  height: calc(100% - 60px);
+  height: calc(100%);
   position: relative;
   iframe {
     height: 100%;

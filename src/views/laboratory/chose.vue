@@ -1,10 +1,14 @@
 <!--  -->
 <template>
   <div class="chose">
+    <i class='iconfont icon-returnHome'
+      @click="()=>{this.$router.push('/blog/list')}"></i>
     <div v-for='item in list'
       :key="item.name"
       @click='enter(item)'
       class='item'>{{item.name}}</div>
+    <div class="player-bg"></div>
+    <div class="player-mask"></div>
   </div>
 </template>
 
@@ -59,6 +63,14 @@ export default {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
+  .icon-returnHome {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 30px;
+    color: #000;
+    cursor: pointer;
+  }
   &:after {
     content: "";
     flex: auto;
@@ -81,6 +93,32 @@ export default {
     &:hover {
       transform: scale(1.01);
     }
+  }
+  .player-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -2;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0.7;
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+    background-image: url("../../assets/bg/bg-2.jpg");
+  }
+  .player-mask {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }
 </style>
