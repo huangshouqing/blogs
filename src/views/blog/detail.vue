@@ -129,7 +129,7 @@ export default {
 
 <style lang="less" scoped>
 .home {
-  height: calc(100% - 80px);
+  height: calc(100% - 60px);
   color: #000;
   position: relative;
   background-image: url("../../assets/bg/bg.png");

@@ -5,7 +5,7 @@
         <router-link tag="a"
           to="/blog"
           href="">博客</router-link>
-        <router-link tag="a"
+        <!-- <router-link tag="a"
           to="/top"
           href="">小说top榜</router-link>
         <router-link tag="a"
@@ -13,7 +13,10 @@
           href="">小说搜索</router-link>
         <router-link tag="a"
           to="/movie"
-          href="">影视搜索</router-link>
+          href="">影视搜索</router-link> -->
+        <router-link tag="a"
+          to="/manage"
+          href="">创作者中心</router-link>
         <router-link tag="a"
           to="/laboratory"
           href="">实验室</router-link>
@@ -35,9 +38,7 @@
       <nav class='setting-nav'>
         <a @click='logout'
           style='cursor:pointer'>退出登录</a>
-        <router-link tag="a"
-          to="/manage"
-          href="">创作者中心</router-link>
+
       </nav>
     </div>
   </div>
@@ -138,7 +139,7 @@ export default {
     }
   }
   position: relative;
-  height: 80px;
+  height: 60px;
   padding: 0 20px;
   color: #000;
   z-index: 9999;
@@ -170,7 +171,7 @@ export default {
       font-weight: bold;
       color: #000;
       opacity: 0.6;
-      line-height: 80px;
+      line-height: 60px;
       text-decoration: none;
       text-shadow: 0 1px rgba(0, 0, 0, 0.2);
       padding: 0 15px;
@@ -181,6 +182,16 @@ export default {
       &.router-link-active {
         transform: scale(1.2);
         opacity: 1;
+        &:after {
+          content: "";
+          display: inline-block;
+          width: 100%;
+          height: 2px;
+          background: #000;
+          position: absolute;
+          bottom: 10px;
+          left: 0px;
+        }
       }
     }
     a:hover {
@@ -191,7 +202,7 @@ export default {
   .search-nav {
     position: absolute;
     right: 220px;
-    line-height: 80px;
+    line-height: 60px;
     margin-left: 30px;
     display: flex;
     align-items: center;
@@ -220,7 +231,7 @@ export default {
       font-weight: bold;
       color: #000;
       opacity: 0.6;
-      line-height: 80px;
+      line-height: 60px;
       text-decoration: none;
       text-shadow: 0 1px rgba(0, 0, 0, 0.2);
       padding: 0 15px;

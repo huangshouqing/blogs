@@ -91,7 +91,7 @@ export default {
 
 <style lang="less" scoped>
 .home {
-  height: calc(100% - 80px);
+  height: calc(100% - 60px);
   .outer {
     height: 100%;
     margin: 0 auto;

@@ -4,7 +4,7 @@
     <i class='iconfont icon-returnHome'
       @click="()=>{this.$router.push('/laboratory/chose')}"></i>
     <iframe src="
-      http://8.134.121.215:39000/#/tv"
+      http://8.134.121.215:39000/#/top/list"
       frameborder="0"
       @load='load'
       v-loading.fullscreen.lock="fullscreenLoading"></iframe>

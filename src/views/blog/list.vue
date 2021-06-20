@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div class="home"
+    v-loading.fullscreen.lock="fullscreenLoading">
     <div class='siderBar'>
       <div class='recommended'>
         <p>最新公告</p>
@@ -16,8 +17,7 @@
         <div class='showData'>
           <el-tabs tab-position="right"
             @tab-click='tabClick'
-            v-model='chose'
-            v-loading="fullscreenLoading">
+            v-model='chose'>
             <el-tab-pane :label="item.value"
               :name="item.id+''"
               v-for='item in typeList'
@@ -73,14 +73,15 @@
 </template>
 
 <script>
+import { Loading } from "element-ui";
 export default {
   name: "blog_list",
   data() {
     return {
+      fullscreenLoading: false,
       chose: null,
       list: [],
       typeList: [],
-      fullscreenLoading: false,
       curPage: 1,
       pageSize: 5,
       total: null,
@@ -94,7 +95,8 @@ export default {
   async created() {
     this.fullscreenLoading = true;
     await this.getTypeList();
-    this.getlist();
+    await this.getlist();
+    this.fullscreenLoading = false;
   },
   methods: {
     tabClick(el) {
@@ -126,8 +128,10 @@ export default {
     },
     // 获取列表
     getlist() {
-      this.fullscreenLoading = true;
-      this.$axios
+      let loadingInstance = Loading.service({
+        target: document.querySelector(".el-tabs__content"),
+      });
+      return this.$axios
         .get(
           `api/blog/list?type_id=${Number(this.chose)}&&curPage=${
             this.curPage
@@ -135,7 +139,7 @@ export default {
         )
         .then((res) => {
           if (res.data.code == 0) {
-            this.fullscreenLoading = false;
+            loadingInstance.close();
             this.list = res.data.data.list;
             this.total = res.data.data.total;
           }
@@ -162,7 +166,7 @@ export default {
 
 <style lang="less" scoped>
 .home {
-  height: calc(100% - 80px);
+  height: calc(100% - 60px);
   .outer {
     height: 100%;
     // width: 1200px;

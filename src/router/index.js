@@ -56,60 +56,60 @@ const routes = [
       },
     ]
   },
-  {
-    path: '/top',
-    name: 'top',
-    redirect: '/top/top',
-    component: () => import('../views/book/main.vue'),
-    children: [
-      {
-        path: '/top/top',
-        name: 'top',
-        component: () => import('../views/book/top.vue')
-      },
-      {
-        path: '/top/menu',
-        name: 'menu',
-        component: () => import('../views/book/menu.vue')
-      },
-    ]
-  },
-  {
-    path: '/book',
-    name: 'book',
-    redirect: '/book/book_search',
-    component: () => import('../views/book/main.vue'),
-    children: [
-      {
-        path: '/book/book_search',
-        name: 'book_search',
-        component: () => import('../views/book/book_search.vue')
-      },
-      {
-        path: '/book/menu',
-        name: 'menu',
-        component: () => import('../views/book/menu.vue')
-      },
-    ]
-  },
-  {
-    path: '/movie',
-    name: 'movie',
-    redirect: '/movie/movie_search',
-    component: () => import('../views/movie/main.vue'),
-    children: [
-      {
-        path: '/movie/movie_search',
-        name: 'movie_search',
-        component: () => import('../views/movie/search.vue')
-      },
-      {
-        path: '/movie/movie_detail',
-        name: 'movie_detail',
-        component: () => import('../views/movie/detail.vue')
-      },
-    ]
-  },
+  // {
+  //   path: '/top',
+  //   name: 'top',
+  //   redirect: '/top/list',
+  //   component: () => import('../views/top/main.vue'),
+  //   children: [
+  //     {
+  //       path: '/top/list',
+  //       name: 'top_list',
+  //       component: () => import('../views/top/top.vue')
+  //     },
+  //     {
+  //       path: '/top/menu',
+  //       name: 'top_menu',
+  //       component: () => import('../views/book/menu.vue')
+  //     },
+  //   ]
+  // },
+  // {
+  //   path: '/book',
+  //   name: 'book',
+  //   redirect: '/book/book_search',
+  //   component: () => import('../views/book/main.vue'),
+  //   children: [
+  //     {
+  //       path: '/book/book_search',
+  //       name: 'book_search',
+  //       component: () => import('../views/book/book_search.vue')
+  //     },
+  //     {
+  //       path: '/book/menu',
+  //       name: 'book_menu',
+  //       component: () => import('../views/book/menu.vue')
+  //     },
+  //   ]
+  // },
+  // {
+  //   path: '/movie',
+  //   name: 'movie',
+  //   redirect: '/movie/movie_search',
+  //   component: () => import('../views/movie/main.vue'),
+  //   children: [
+  //     {
+  //       path: '/movie/movie_search',
+  //       name: 'movie_search',
+  //       component: () => import('../views/movie/search.vue')
+  //     },
+  //     {
+  //       path: '/movie/movie_detail',
+  //       name: 'movie_detail',
+  //       component: () => import('../views/movie/detail.vue')
+  //     },
+  //   ]
+  // },
   {
     path: '/laboratory',
     name: 'laboratory',
@@ -133,6 +133,23 @@ const routes = [
         path: '/laboratory/cloudMusic',
         name: 'laboratory',
         component: () => import('../views/laboratory/cloudMusic.vue')
+      },
+      // 影视
+      {
+        path: '/laboratory/movie',
+        name: 'laboratory',
+        component: () => import('../views/laboratory/movie.vue')
+      },
+      // 小说
+      {
+        path: '/laboratory/book',
+        name: 'laboratory',
+        component: () => import('../views/laboratory/book.vue')
+      },
+      {
+        path: '/laboratory/top',
+        name: 'laboratory',
+        component: () => import('../views/laboratory/top.vue')
       },
     ]
   },

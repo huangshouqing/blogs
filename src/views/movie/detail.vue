@@ -129,7 +129,7 @@ export default {
 </script>
 <style lang='less' scoped>
 .movie-detail {
-  height: calc(100% - 80px);
+  height: calc(100% - 60px);
   width: 100%;
   overflow: hidden;
   box-sizing: border-box;

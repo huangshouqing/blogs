@@ -108,6 +108,7 @@ export default {
       if (url.indexOf("html") === -1) {
         return;
       }
+      this.chapterUrl = url;
       this.contentLoading = true;
       this.$axios.get(`api/book/detail?chapterUrl=${url}`).then((res) => {
         this.contentLoading = false;
@@ -121,6 +122,7 @@ export default {
       if (url.indexOf("html") === -1) {
         return;
       }
+      this.chapterUrl = url;
       this.contentLoading = true;
       this.$axios.get(`api/book/detail?chapterUrl=${url}`).then((res) => {
         this.contentLoading = false;
@@ -139,7 +141,7 @@ export default {
 <style lang="less" scoped>
 @fontColor: #2c3e50;
 .home {
-  height: calc(100% - 80px);
+  height: calc(100% - 60px);
   .icon-return {
     position: absolute;
     left: 20px;

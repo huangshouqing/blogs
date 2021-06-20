@@ -143,7 +143,7 @@ export default {
 
 <style scoped lang='less'>
 .main {
-  height: calc(100% - 80px);
+  height: calc(100% - 60px);
   width: 1200px;
   min-width: 1200px;
   padding: 0px 40px;

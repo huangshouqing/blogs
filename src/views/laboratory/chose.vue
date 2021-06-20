@@ -14,17 +14,24 @@ export default {
     return {
       list: [
         {
-          name: "音乐实验室",
-          // url: "http://8.134.121.215:8083/",
+          name: "music实验室",
           router: "/laboratory/cloudMusic",
-        },
-        {
-          name: "游戏实验室",
-          router: "/cloudMusic",
         },
         {
           name: "tv实验室",
           router: "/laboratory/tv",
+        },
+        {
+          name: "movie实验室",
+          router: "/laboratory/movie",
+        },
+        {
+          name: "book实验室",
+          router: "/laboratory/book",
+        },
+        {
+          name: "topBook实验室",
+          router: "/laboratory/top",
         },
       ],
     };
