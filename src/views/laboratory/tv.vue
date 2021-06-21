@@ -42,7 +42,7 @@ export default {
     left: 20px;
     top: 20px;
     font-size: 30px;
-    color: #000;
+    color: #fff;
     cursor: pointer;
   }
 }

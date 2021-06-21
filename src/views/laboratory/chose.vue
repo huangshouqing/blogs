@@ -54,6 +54,7 @@ export default {
 };
 </script>
 <style lang='less' scoped>
+@fontColor: hsla(0, 0%, 100%, 0.6);
 .chose {
   display: flex;
   width: 1200px;
@@ -68,7 +69,7 @@ export default {
     left: 20px;
     top: 20px;
     font-size: 30px;
-    color: #000;
+    color: #fff;
     cursor: pointer;
   }
   &:after {
@@ -84,14 +85,15 @@ export default {
     align-items: center;
     justify-content: center;
     margin-right: 40px;
-    color: #fff;
+    color: @fontColor;
     font-size: 20px;
     font-weight: bold;
-    background-color: #000;
+    background-color: rgba(197, 197, 197, 0.4);
+    backdrop-filter: blur(5px);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.5s;
     &:hover {
-      transform: scale(1.01);
+      transform: scale(1.2);
     }
   }
   .player-bg {
